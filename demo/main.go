@@ -20,8 +20,9 @@ func main() {
 	var q sql.Node = tables["commits"]
 	printQuery(q)
 
+	fmt.Println("\n\n\n")
 
-	fmt.Println("SELECT * FROM commits;\n")
+	fmt.Println("SELECT author_name, message FROM commits;\n")
 	q = plan.NewProject(
 		[]sql.Expression{
 			expression.NewGetField(2, sql.String, "author_name"),
@@ -33,7 +34,7 @@ func main() {
 				expression.NewLiteral("santi@mola.io", sql.String),
 			),
 			tables["commits"],
-		)
+		),
 	)
 	printQuery(q)
 }
